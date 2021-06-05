@@ -1,7 +1,10 @@
 .formularioFechas {
   display: none; }
-  .formularioFechas #reservar {
-    margin-left: 100%; }
+  .formularioFechas .botonesFormulario {
+    display: flex;
+    margin-left: 60%;
+    justify-content: space-around;
+    align-items: center; }
 
 .habitacion {
   display: flex;
@@ -481,8 +484,6 @@ a .fas {
   .contenedor-footer .contenedor-footer-redes .fab {
     font-size: 2.9rem;
     margin-right: 3%; }
-  .formularioFechas #reservar {
-    margin-left: 78%; }
   .habitacion .habitacion-tipo .habitacion-tipo-info .habitacion-tipo-info-reserva .habitacion-tipo-info-reserva-boton {
     width: 40%; }
   .modal-ini .modal-reserva .modal-reserva-cuerpo .modal-reserva-cuerpo-titulos .imagen {
@@ -557,16 +558,16 @@ a .fas {
     margin: 0; }
     .contenedor-footer .contenedor-footer-redes .fab {
       margin: 2%; }
-  .formularioFechas #reservar {
-    margin-left: 70%; }
+  .formularioFechas .botonesFormulario {
+    margin-left: 50%; }
   .habitacion .habitacion-tipo .habitacion-tipo-imagen {
     width: 90%; }
   .habitacion .habitacion-tipo .habitacion-tipo-info .habitacion-tipo-info-nombre {
     font-size: 24px; }
   .habitacion .habitacion-tipo .habitacion-tipo-info .habitacion-tipo-info-items {
     margin-left: 20%; }
-  .habitacion .habitacion-tipo .habitacion-tipo-info .habitacion-tipo-info-reserva .habitacion-tipo-info-reserva-boton {
-    width: 50%; }
+  .habitacion .habitacion-tipo .habitacion-tipo-info .habitacion-tipo-info-reserva p, .habitacion .habitacion-tipo .habitacion-tipo-info .habitacion-tipo-info-reserva button {
+    line-height: 1; }
   .habitacion-todas {
     font-size: 1.1rem; }
   .modal-ini .modal-reserva .modal-reserva-cuerpo {
@@ -597,6 +598,8 @@ a .fas {
       width: 95%; }
       .opiniones .opiniones-imagen .opiniones-imagen-img {
         width: 100%; }
+  .formularioFechas .botonesFormulario {
+    margin-left: 40%; }
   .modal-ini .modal-reserva .modal-reserva-cuerpo {
     font-size: 1rem; }
     .modal-ini .modal-reserva .modal-reserva-cuerpo .modal-reserva-cuerpo-titulos .fechas {
@@ -621,8 +624,10 @@ a .fas {
     font-size: 0.9rem; }
   .galeria li .boton img {
     width: 100%; }
-  .formularioFechas #reservar {
-    margin-left: 56%; }
+  .formularioFechas .botonesFormulario {
+    margin-left: 0%; }
+  .habitacion-tipo-info-reserva p, .habitacion-tipo-info-reserva button {
+    font-size: 1rem; }
   .modal-ini .modal-reserva .modal-reserva-cuerpo .modal-reserva-cuerpo-titulos {
     font-size: 0.95rem; }
   .modal-ini .modal-reserva .modal-reserva-cuerpo .modal-reserva-cuerpo-detalle {

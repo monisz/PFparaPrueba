@@ -48,10 +48,12 @@ function elegirFechas(id) {
 }
 
 $("#reservar").click(agregarAReserva);
+let contadorIngresos = 0;
 
 //* Función para agregar noches a la reserva, con todas las llamadas a funciones asociadas */
 function agregarAReserva() {
     id = idSeleccionado;
+    contadorIngresos = 1;
     ok = verificarIngresos();
     if (ok) {
         let entrada = document.getElementById('entrada').value;
@@ -76,36 +78,78 @@ function agregarAReserva() {
             }
             console.log("stock " + habitaciones[id-1].stock + " acumuladorCarrito " + acumuladorReserva + " al terminar");
         }
-        document.getElementById('entrada').value = '';
-        document.getElementById('salida').value = '';
-        document.getElementById('cantidadPersonas').value = '';
+        cancelarIngresos();
     } else {
         elegirFechas(id);
     }
 }
 
+$("#entrada").change(verificarIngresos);
+$("#salida").change(verificarIngresos);
+$("#cantidadPersonas").change(verificarIngresos);
+$("#cancelar").click(cancelarIngresos);
+
 // FUNCION PARA VERIFICAR EL INGRESO CORRECTO DE LOS DATOS
 function verificarIngresos() {
+    document.getElementById('agregadoAReserva').innerHTML = '';
+    
+    const entradaIngresada = document.getElementById('entrada');
+    const salidaIngresada = document.getElementById('salida');
+    const cantPersonasIngresada = document.getElementById('cantidadPersonas')
     const hoy = new Date();
     hoyModificado = hoy.toISOString();
     fechaDeHoy = hoyModificado.slice(0, 10);
     let ok = false;
-    if ((document.getElementById('entrada').value == "") || (document.getElementById('salida').value == "")) {
+    
+
+    if (entradaIngresada.value == "") {
+        console.log("entró a entrada vacía")
+        entradaIngresada.style.borderColor="red";
         document.getElementById('ingresoErroneo').innerHTML = `<h4
-            style="color:red">Debe completar las fechas de entrada y salida</>`;
-    } else if (document.getElementById('entrada').value >= document.getElementById('salida').value) {
+            style="color:red">Debe completar la fecha de entrada</>`;
+    } else if (entradaIngresada.value <= fechaDeHoy) {
+        console.log("entró a menor a fecha de hoy")
+            entradaIngresada.style.borderColor="red";
             document.getElementById('ingresoErroneo').innerHTML = `<h4
-                style="color:red">La fecha de salida no debe ser igual o anterior a la de entrada</h4>`;
-        } else if (document.getElementById('entrada').value <= fechaDeHoy) {
+                style="color:red">La fecha de entrada debe ser posterior a la fecha de hoy</h4>`;
+        } else if (salidaIngresada.value == "") {
+            console.log("entró a salida vacía")
+            entradaIngresada.style.borderColor="green";
+            document.getElementById('ingresoErroneo').innerHTML = ``;
+            if (contadorIngresos == 1) {   
+                console.log("entró a salida vacía despues de tocar reservar")
+                salidaIngresada.style.borderColor="red";
                 document.getElementById('ingresoErroneo').innerHTML = `<h4
-                    style="color:red">La fecha de entrada debe ser posterior a la fecha de hoy</h4>`;
-            } else if (document.getElementById('cantidadPersonas').value == "") {
-                document.getElementById('ingresoErroneo').innerHTML = `<h4 
-                    style="color:red">Debe completar la cantidad de personas</h4>`;
-                } else if (document.getElementById('cantidadPersonas').value < 1 || document.getElementById('cantidadPersonas').value >5) {
-                    document.getElementById('ingresoErroneo').innerHTML = `<h4 
-                        style="color:red">La cantidad de personas puede ser de 1 a 5</h4>`;
+                    style="color:red">Debe completar la fecha de salida</>`;
+            } 
+            } else if (entradaIngresada.value >= salidaIngresada.value) {
+                console.log("entró a salida menor que entrada")
+                entradaIngresada.style.borderColor="red";
+                salidaIngresada.style.borderColor="red";
+                document.getElementById('ingresoErroneo').innerHTML = `<h4
+                    style="color:red">La fecha de salida no debe ser igual o anterior a la de entrada</h4>`;
+                } else if (cantPersonasIngresada.value == "") {
+                    console.log("entró a cantidad vacía")
+                    entradaIngresada.style.borderColor="green";
+                    salidaIngresada.style.borderColor="green";
+                    document.getElementById('ingresoErroneo').innerHTML = ``;
+                    if (contadorIngresos == 1) {
+                        console.log("entró a cantidad vacía despues de tocar reservar") 
+                        cantPersonasIngresada.style.borderColor="red";
+                        document.getElementById('ingresoErroneo').innerHTML = `<h4 
+                            style="color:red">Debe completar la cantidad de personas</>`;
+                    }
+                    } else if (cantPersonasIngresada.value < 1 || cantPersonasIngresada.value >5) {
+                        console.log("entró a cantidad mal")
+                        cantPersonasIngresada.style.borderColor="red";
+                        document.getElementById('ingresoErroneo').innerHTML = `<h4 
+                            style="color:red">La cantidad de personas puede ser de 1 a 5</h4>`;
                     } else {
+                        console.log("entró a todo correcto")
+                        entradaIngresada.style.borderColor="green";
+                        salidaIngresada.style.borderColor="green";
+                        cantPersonasIngresada.style.borderColor="green";
+                        document.getElementById('ingresoErroneo').innerHTML = ``;
                         ok = true;
                     }
     return ok;
@@ -124,6 +168,17 @@ function calcularNoches(entrada, salida) {
             </h4>`;
         return 0;
     }
+}
+
+function cancelarIngresos () {
+    document.getElementById('entrada').value = '';
+    document.getElementById('salida').value = '';
+    document.getElementById('cantidadPersonas').value = '';
+    document.getElementById('entrada').style.borderColor="initial";
+    document.getElementById('salida').style.borderColor="initial";
+    document.getElementById('cantidadPersonas').style.borderColor="initial";
+    document.getElementById('ingresoErroneo').innerHTML = '';
+    contadorIngresos = 0;
 }
 
 //**Función para descontar stock de habitaciones */
@@ -282,3 +337,34 @@ function vaciarReserva() {
             <button style="border:none; background-color:white" 
             onclick="eliminarDeReserva(${reserva.indexOf(element)})">
             <i class="fas fa-minus-circle"></i></button></p>   */
+
+
+            /* function verificarIngresos() {
+                const entradaIngresada = document.getElementById('entrada');
+                const salidaIngresada = document.getElementById('salida');
+                const cantPersonasIngresada = document.getElementById('cantidadPersonas')
+                const hoy = new Date();
+                hoyModificado = hoy.toISOString();
+                fechaDeHoy = hoyModificado.slice(0, 10);
+                let ok = false;
+                if (entradaIngresada.value == "" || salidaIngresada.value == "") {
+                    entradaIngresada.style.borderColor="red";
+                    document.getElementById('ingresoErroneo').innerHTML = `<h4
+                        style="color:red">Debe completar las fechas de entrada y salida</>`;
+                } else if (document.getElementById('entrada').value >= document.getElementById('salida').value) {
+                        document.getElementById('ingresoErroneo').innerHTML = `<h4
+                            style="color:red">La fecha de salida no debe ser igual o anterior a la de entrada</h4>`;
+                    } else if (document.getElementById('entrada').value <= fechaDeHoy) {
+                            document.getElementById('ingresoErroneo').innerHTML = `<h4
+                                style="color:red">La fecha de entrada debe ser posterior a la fecha de hoy</h4>`;
+                        } else if (document.getElementById('cantidadPersonas').value == "") {
+                            document.getElementById('ingresoErroneo').innerHTML = `<h4 
+                                style="color:red">Debe completar la cantidad de personas</h4>`;
+                            } else if (document.getElementById('cantidadPersonas').value < 1 || document.getElementById('cantidadPersonas').value >5) {
+                                document.getElementById('ingresoErroneo').innerHTML = `<h4 
+                                    style="color:red">La cantidad de personas puede ser de 1 a 5</h4>`;
+                                } else {
+                                    ok = true;
+                                }
+                return ok;
+            }  */           

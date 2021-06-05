@@ -408,11 +408,6 @@ a .fas {
             }
         }
     }
-    .formularioFechas {
-        #reservar {
-            margin-left: 78%;
-        }
-    }
     .habitacion {
         .habitacion-tipo {
             .habitacion-tipo-info {
@@ -545,8 +540,8 @@ a .fas {
         }
     }
     .formularioFechas {
-        #reservar {
-            margin-left: 70%;
+        .botonesFormulario {
+            margin-left: 50%;
         }
     }
     .habitacion {
@@ -562,8 +557,8 @@ a .fas {
                     margin-left: 20%;
                 }
                 .habitacion-tipo-info-reserva {
-                    .habitacion-tipo-info-reserva-boton {
-                        width: 50%;
+                    p, button {
+                        line-height: 1;
                     }
                 }
             }
@@ -622,7 +617,12 @@ a .fas {
                 width: $anchototal;
             }
         }
-    }   
+    }  
+    .formularioFechas {
+        .botonesFormulario {
+            margin-left: 40%;
+        }
+    } 
     .modal-ini {
         .modal-reserva {
             .modal-reserva-cuerpo {
@@ -678,8 +678,13 @@ a .fas {
         }
     }
     .formularioFechas {
-        #reservar {
-            margin-left: 56%;
+        .botonesFormulario {
+            margin-left: 0%;
+        }
+    }
+    .habitacion-tipo-info-reserva {
+        p, button {
+            font-size: 1rem;
         }
     }
     .modal-ini {

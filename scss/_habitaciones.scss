@@ -1,8 +1,11 @@
 .formularioFechas {
     display: none;
-        #reservar {
-            margin-left: 100%;
-        }
+    .botonesFormulario {
+        display: flex;
+        margin-left: 60%;
+        justify-content: space-around;
+        align-items: center;
+    }
 }
 
 
