@@ -300,7 +300,6 @@ async function generarPago() {
         const data = await response.json();
         window.open(data.init_point, "_blank");
         console.log(data)
-        /* finalDePago(data.id) */
         vaciarReserva();
     }
 }
@@ -315,56 +314,3 @@ function vaciarReserva() {
     }
     $("#modalReserva").hide();
 }
-
-
-//Intento de conseguir el status de pago
-// para vaciar la reserva solo si el pago fue aprobado
-
-/* async function finalDePago(id) {
-    const respuestaPago = await fetch(`https://api.mercadopago.com/v1/payments/${id}`, {
-        method: "GET",
-        headers: {
-            Authorization: "Bearer TEST-4559372510592656-052123-aff869a0f602f03b3b82c52239cf67db-80359143",
-        },
-    });
-    const pagoAprobado = await respuestaPago.json();
-    console.log(pagoAprobado)
-} */
-
-/* <p style="font-size:1.1rem"> 
-            ${element.cantidad} noche/s en ${element.nombre} del ${element.entrada} al 
-            ${element.salida} - $ ${element.precio} c/u - Total $ ${element.cantidad*element.precio}
-            <button style="border:none; background-color:white" 
-            onclick="eliminarDeReserva(${reserva.indexOf(element)})">
-            <i class="fas fa-minus-circle"></i></button></p>   */
-
-
-            /* function verificarIngresos() {
-                const entradaIngresada = document.getElementById('entrada');
-                const salidaIngresada = document.getElementById('salida');
-                const cantPersonasIngresada = document.getElementById('cantidadPersonas')
-                const hoy = new Date();
-                hoyModificado = hoy.toISOString();
-                fechaDeHoy = hoyModificado.slice(0, 10);
-                let ok = false;
-                if (entradaIngresada.value == "" || salidaIngresada.value == "") {
-                    entradaIngresada.style.borderColor="red";
-                    document.getElementById('ingresoErroneo').innerHTML = `<h4
-                        style="color:red">Debe completar las fechas de entrada y salida</>`;
-                } else if (document.getElementById('entrada').value >= document.getElementById('salida').value) {
-                        document.getElementById('ingresoErroneo').innerHTML = `<h4
-                            style="color:red">La fecha de salida no debe ser igual o anterior a la de entrada</h4>`;
-                    } else if (document.getElementById('entrada').value <= fechaDeHoy) {
-                            document.getElementById('ingresoErroneo').innerHTML = `<h4
-                                style="color:red">La fecha de entrada debe ser posterior a la fecha de hoy</h4>`;
-                        } else if (document.getElementById('cantidadPersonas').value == "") {
-                            document.getElementById('ingresoErroneo').innerHTML = `<h4 
-                                style="color:red">Debe completar la cantidad de personas</h4>`;
-                            } else if (document.getElementById('cantidadPersonas').value < 1 || document.getElementById('cantidadPersonas').value >5) {
-                                document.getElementById('ingresoErroneo').innerHTML = `<h4 
-                                    style="color:red">La cantidad de personas puede ser de 1 a 5</h4>`;
-                                } else {
-                                    ok = true;
-                                }
-                return ok;
-            }  */           
