@@ -284,9 +284,22 @@ a .fas {
 }
 
 @media (max-width: 992px) {
-    .header-nav-logo{
-        width: 50%;
+    .header-nav {
+        display:flex;
+        .navbar-brand {
+            margin-right: 0;
+            .header-nav-logo{
+                width: 50%;
+            }
+        }
+        .navbar-toggler {
+            order: 1;
+        }
+        .habitacion-tipo-info-reserva {
+            margin-right: 12%;
+        }
     }
+    
     .section-carrusel {
         margin-top: 8vh;
         .section-carrusel-texto {
@@ -477,9 +490,6 @@ a .fas {
 }
 
 @media (max-width: 576px) {
-    .header-nav-logo {
-        width: 40%;
-    }
     .section-carrusel {
         margin-top: 11vh;
         .section-carrusel-texto {
@@ -652,6 +662,15 @@ a .fas {
 }
 
 @media (max-width: 400px) {
+    .navbar-brand {
+        width: 35%;
+    }
+    .habitacion-tipo-info-reserva {
+        margin-right: 12%;
+        .habitacion-tipo-info-reserva-boton {
+            font-size: 0.8rem;
+        }
+    }
     .section-carrusel {
         margin-top: 12vh;
         .section-carrusel-texto {
