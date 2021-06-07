@@ -4,3 +4,4 @@ let reserva = [];
 let reservaEnLocal = JSON.parse(localStorage.getItem('reserva'));
 let habitacionesEnLocal = [];
 let idSeleccionado = 0;
+let tocaReservar = false;
