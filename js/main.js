@@ -47,6 +47,7 @@ function elegirFechas(id) {
     document.getElementById('agregadoAReserva').innerHTML = '';                 
 }
 
+// EVENTOS 
 $("#reservar").click(agregarAReserva);
 $("#entrada").change(verificarIngresos);
 $("#salida").change(verificarIngresos);
